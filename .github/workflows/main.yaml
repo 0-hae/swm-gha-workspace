@@ -26,8 +26,8 @@ jobs:
         echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
         echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
         echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
+        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
 
       
 
@@ -42,5 +42,5 @@ jobs:
         echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
         echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
         echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
+        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
