@@ -2,66 +2,26 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
-env:
-  GLOBAL_LEVEL : "This value comes from the Global level"
-
 jobs:
   first-job:
     name: 'First Job'
 
     runs-on: ubuntu-latest
 
-    env:
-      JOB_LEVEL_1 : "This value comes from the Job level 1"
 
     steps:
-    - name: Say Hello World 1
-      shell: bash
-
-      env:
-        STEP_LEVEL_1 : "This value comes from the Step level 1"
-
-      run: |
-        echo "Hello World from step 2"
-        echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
-
-      
-
-    - name: Say Hello World 2
-      shell: pwsh
-
-      env:
-        STEP_LEVEL_2 : "This value comes from the Step level 2"
-
-      run: |
-        echo "Hello World from step 2"
-        echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
-
-    - name: Set env variable
-      shell: bash
-
-      run: |
-        swmValue=$(echo "hello SWM")
-        echo "SWM_VALUE=$swmValue" >> $GITHUB_ENV
-
-    - name : Get env variable from bash
+    - name: Set output value
+      id: first
       shell: bash
       run: |
-        echo "SWM_VALUE 1: ${{ env.SWM_VALUE }}"
-        echo "SWM_VALUE 1: $SWM_VALUE"
-        echo "SWM_VALUE 1: $env:SWM_VALUE"
+        swm_value1="This is the value for the first output"
+        swm_value2="This is the value for the second output"
 
-    - name : Get env variable from pwsh
+        echo "::set-output name=swm1::$swm_value1"
+        echo "::set-output name=swm2::$swm_value2"
+
+    - name: Get output value
       shell: pwsh
       run: |
-        echo "SWM_VALUE 1: ${{ env.SWM_VALUE }}"
-        echo "SWM_VALUE 1: $SWM_VALUE"
-        echo "SWM_VALUE 1: $env:SWM_VALUE"
+        echo "Output value is: ${{ steps.first.outputs.swm1 }}"
+        echo "Output value is: ${{ steps.first.outputs.swm2 }}"
