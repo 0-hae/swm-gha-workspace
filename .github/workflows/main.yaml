@@ -45,41 +45,23 @@ jobs:
         echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
         echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
 
-  second-job:
-    name: 'Second Job'
-
-    runs-on: ubuntu-latest
-
-    env:
-      JOB_LEVEL_2 : "This value comes from the Job level 2"
-
-    steps:
-    - name: Say Hello World 1
+    - name: Set env variable
       shell: bash
 
-      env:
-        STEP_LEVEL_1 : "This value comes from the Step level 1"
-
       run: |
-        echo "Hello World from step 2"
-        echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
+        swmValue=$(echo "hello SWM")
+        echo "SWM_VALUE=$swmValue" >> $GITHUB_ENV
 
-      
+    - name : Get env variable from bash
+      shell: bash
+      run: |
+        echo "SWM_VALUE 1: ${{ env.SWM_VALUE }}"
+        echo "SWM_VALUE 1: $SWM_VALUE"
+        echo "SWM_VALUE 1: $env:SWM_VALUE"
 
-    - name: Say Hello World 2
+    - name : Get env variable from pwsh
       shell: pwsh
-
-      env:
-        STEP_LEVEL_2 : "This value comes from the Step level 2"
-
       run: |
-        echo "Hello World from step 2"
-        echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
-        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_2 }}"
-        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_2 }}"
+        echo "SWM_VALUE 1: ${{ env.SWM_VALUE }}"
+        echo "SWM_VALUE 1: $SWM_VALUE"
+        echo "SWM_VALUE 1: $env:SWM_VALUE"
