@@ -2,19 +2,45 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
+env:
+  GLOBAL_LEVEL : "This value comes from the Global level"
+
 jobs:
   first-job:
     name: 'First Job'
 
     runs-on: ubuntu-latest
 
+    env:
+      JOB_LEVEL_1 : "This value comes from the Global level 1"
+
     steps:
     - name: Say Hello World 1
       shell: bash
+
+      env:
+        STEP_LEVEL_1 : "This value comes from the Step level 1"
+
       run: |
-        echo "Hello World from step 1"
+        echo "Hello World from step 2"
+        echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
+        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
+
+      
 
     - name: Say Hello World 2
       shell: pwsh
+
+      env:
+        STEP_LEVEL_2 : "This value comes from the Step level 2"
+
       run: |
         echo "Hello World from step 2"
+        echo "GLOBAL : Hellow World from ${{ env.GLOBAL_LEVEL }}"
+        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.JOB_LEVEL_1 }}"
+        echo "GLOBAL : Hellow World from ${{ env.STEP_LEVEL_1 }}"
